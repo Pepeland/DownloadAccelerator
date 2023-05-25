@@ -39,6 +39,7 @@
             this.numericConnections = new System.Windows.Forms.NumericUpDown();
             this.btnDownloadFolder = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnOpenDownloadFolder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericConnections)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -156,11 +157,24 @@
             this.panel1.Size = new System.Drawing.Size(519, 143);
             this.panel1.TabIndex = 16;
             // 
+            // btnOpenDownloadFolder
+            // 
+            this.btnOpenDownloadFolder.AutoSize = true;
+            this.btnOpenDownloadFolder.Location = new System.Drawing.Point(279, 165);
+            this.btnOpenDownloadFolder.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOpenDownloadFolder.Name = "btnOpenDownloadFolder";
+            this.btnOpenDownloadFolder.Size = new System.Drawing.Size(121, 23);
+            this.btnOpenDownloadFolder.TabIndex = 17;
+            this.btnOpenDownloadFolder.Text = "Open download folder";
+            this.btnOpenDownloadFolder.UseVisualStyleBackColor = true;
+            this.btnOpenDownloadFolder.Click += new System.EventHandler(this.btnOpenDownloadFolder_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 400);
+            this.Controls.Add(this.btnOpenDownloadFolder);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnDownloadFolder);
             this.Controls.Add(this.numericConnections);
@@ -195,6 +209,7 @@
         private System.Windows.Forms.NumericUpDown numericConnections;
         private System.Windows.Forms.Button btnDownloadFolder;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnOpenDownloadFolder;
     }
 }
 

@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -124,6 +126,24 @@ namespace DownloadAccelerator
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
                     txtDownloadFolder.Text = folderBrowserDialog.SelectedPath;
             }
+        }
+
+        private static void OpenFolderInExplorer(string folderPath)
+        {
+            try
+            {
+                Process.Start("explorer.exe", folderPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while trying to open the folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnOpenDownloadFolder_Click(object sender, EventArgs e)
+        {
+            if(!string.IsNullOrEmpty(txtDownloadFolder.Text) && Directory.Exists(txtDownloadFolder.Text))
+                OpenFolderInExplorer(txtDownloadFolder.Text);
         }
     }
 }
