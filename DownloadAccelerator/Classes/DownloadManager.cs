@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace DownloadAccelerator.Classes
 {
     public class DownloadManager
     {
-        public ConcurrentDictionary<int, int> segmentProgress = new ConcurrentDictionary<int, int>();
-        public int segmentCount;
-        public string url;
+        public List<DownloadSegment> DownloadSegments = new List<DownloadSegment>();
+        public int SegmentCount;
+        public string Url;
+        public string DownloadFolder;
 
         private long GetFileSize(string url)
         {
@@ -29,26 +24,25 @@ namespace DownloadAccelerator.Classes
             }
         }
 
-        public DownloadManager(string url, int segmentCount)
+        public DownloadManager(string url, int segmentCount, string downloadFolder)
         {
-            this.url = url;
-            this.segmentCount = segmentCount;
-            for (int i = 0; i < this.segmentCount; i++)
-                segmentProgress.TryAdd(i+1, 0);
+            this.Url = url;
+            this.SegmentCount = segmentCount;
+            this.DownloadFolder = downloadFolder;
         }
 
         private List<DownloadSegment> DivideFileIntoSegments()
         {
-            long fileSize = GetFileSize(url);
+            long fileSize = GetFileSize(Url);
 
-            long segmentSize = fileSize / segmentCount;
+            long segmentSize = fileSize / SegmentCount;
 
             List<DownloadSegment> segments = new List<DownloadSegment>();
 
-            for (int i = 0; i < segmentCount; i++)
+            for (int i = 0; i < SegmentCount; i++)
             {
                 long startRange = i * segmentSize;
-                long endRange = (i == segmentCount - 1) ? fileSize - 1 : startRange + segmentSize - 1;
+                long endRange = (i == SegmentCount - 1) ? fileSize - 1 : startRange + segmentSize - 1;
 
                 DownloadSegment segment = new DownloadSegment
                 {
@@ -86,7 +80,7 @@ namespace DownloadAccelerator.Classes
                     // to calculate progress percentage
                     totalBytesRead += bytesRead;
                     double percentage = (double)totalBytesRead / totalBytesToRead * 100;
-                    segmentProgress[segment.SegmentNumber] = (int)percentage;
+                    segment.Progress = (int)percentage;
                 }
 
                 byte[] segmentData = memoryStream.ToArray();
@@ -95,14 +89,12 @@ namespace DownloadAccelerator.Classes
             }
         }
 
-        private async Task DownloadSegmentsConcurrentlyAsync(List<DownloadSegment> segments, string url)
+        private async Task DownloadSegmentsConcurrentlyAsync(string url)
         {
             List<Task> downloadTasks = new List<Task>();
 
-            foreach (DownloadSegment segment in segments)
-            {
+            foreach (DownloadSegment segment in this.DownloadSegments)
                 downloadTasks.Add(DownloadSegmentAsync(url, segment));
-            }
 
             await Task.WhenAll(downloadTasks);
         }
@@ -116,16 +108,18 @@ namespace DownloadAccelerator.Classes
                 foreach (DownloadSegment segment in segments)
                 {
                     outputFileStream.Write(segment.Data, 0, segment.Data.Length);
+                    segment.Data = null;
                 }
             }
         }
 
-        public async void downloadFile()
+        public async void DownloadFile()
         {
-            var downloadSegments = this.DivideFileIntoSegments();
-            await this.DownloadSegmentsConcurrentlyAsync(downloadSegments, url);
-            var fileName = Path.GetFileName(url);
-            this.CombineSegments(downloadSegments, fileName);
+            ServicePointManager.DefaultConnectionLimit = SegmentCount;
+            this.DownloadSegments = this.DivideFileIntoSegments();
+            await this.DownloadSegmentsConcurrentlyAsync(Url);
+            var filePath = DownloadFolder + "\\" + Path.GetFileName(Url);
+            this.CombineSegments(DownloadSegments, filePath);
         }
     }
 }

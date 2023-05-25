@@ -32,26 +32,31 @@
             this.btnDownload = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.progressBar3 = new System.Windows.Forms.ProgressBar();
-            this.progressBar4 = new System.Windows.Forms.ProgressBar();
-            this.progressBar5 = new System.Windows.Forms.ProgressBar();
-            this.progressBar6 = new System.Windows.Forms.ProgressBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtDownloadFolder = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numericConnections = new System.Windows.Forms.NumericUpDown();
+            this.btnDownloadFolder = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.numericConnections)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtUrl
             // 
-            this.txtUrl.Location = new System.Drawing.Point(12, 33);
-            this.txtUrl.Multiline = true;
+            this.txtUrl.Location = new System.Drawing.Point(66, 60);
+            this.txtUrl.Margin = new System.Windows.Forms.Padding(2);
             this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(1283, 54);
+            this.txtUrl.Size = new System.Drawing.Size(519, 20);
             this.txtUrl.TabIndex = 0;
             // 
             // btnDownload
             // 
-            this.btnDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDownload.Location = new System.Drawing.Point(12, 115);
+            this.btnDownload.Location = new System.Drawing.Point(200, 165);
+            this.btnDownload.Margin = new System.Windows.Forms.Padding(2);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(280, 114);
+            this.btnDownload.Size = new System.Drawing.Size(75, 23);
             this.btnDownload.TabIndex = 1;
             this.btnDownload.Text = "Download";
             this.btnDownload.UseVisualStyleBackColor = true;
@@ -59,61 +64,119 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(318, 115);
+            this.progressBar1.Location = new System.Drawing.Point(12, 12);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(977, 23);
+            this.progressBar1.Size = new System.Drawing.Size(495, 8);
             this.progressBar1.TabIndex = 2;
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(318, 148);
+            this.progressBar2.Location = new System.Drawing.Point(12, 25);
+            this.progressBar2.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(977, 23);
+            this.progressBar2.Size = new System.Drawing.Size(495, 8);
             this.progressBar2.TabIndex = 3;
             // 
-            // progressBar3
+            // label1
             // 
-            this.progressBar3.Location = new System.Drawing.Point(318, 182);
-            this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(977, 23);
-            this.progressBar3.TabIndex = 4;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(63, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Download URL";
             // 
-            // progressBar4
+            // label2
             // 
-            this.progressBar4.Location = new System.Drawing.Point(318, 218);
-            this.progressBar4.Name = "progressBar4";
-            this.progressBar4.Size = new System.Drawing.Size(977, 23);
-            this.progressBar4.TabIndex = 5;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(64, 98);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Download Folder";
             // 
-            // progressBar5
+            // txtDownloadFolder
             // 
-            this.progressBar5.Location = new System.Drawing.Point(318, 255);
-            this.progressBar5.Name = "progressBar5";
-            this.progressBar5.Size = new System.Drawing.Size(977, 23);
-            this.progressBar5.TabIndex = 6;
+            this.txtDownloadFolder.Location = new System.Drawing.Point(66, 114);
+            this.txtDownloadFolder.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDownloadFolder.Name = "txtDownloadFolder";
+            this.txtDownloadFolder.Size = new System.Drawing.Size(480, 20);
+            this.txtDownloadFolder.TabIndex = 10;
             // 
-            // progressBar6
+            // label3
             // 
-            this.progressBar6.Location = new System.Drawing.Point(318, 292);
-            this.progressBar6.Name = "progressBar6";
-            this.progressBar6.Size = new System.Drawing.Size(977, 23);
-            this.progressBar6.TabIndex = 7;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(63, 151);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Connection number:";
+            // 
+            // numericConnections
+            // 
+            this.numericConnections.Location = new System.Drawing.Point(66, 167);
+            this.numericConnections.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numericConnections.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericConnections.Name = "numericConnections";
+            this.numericConnections.Size = new System.Drawing.Size(120, 20);
+            this.numericConnections.TabIndex = 14;
+            this.numericConnections.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.numericConnections.ValueChanged += new System.EventHandler(this.numericConnections_ValueChanged);
+            // 
+            // btnDownloadFolder
+            // 
+            this.btnDownloadFolder.Location = new System.Drawing.Point(551, 112);
+            this.btnDownloadFolder.Name = "btnDownloadFolder";
+            this.btnDownloadFolder.Size = new System.Drawing.Size(34, 23);
+            this.btnDownloadFolder.TabIndex = 15;
+            this.btnDownloadFolder.Text = "...";
+            this.btnDownloadFolder.UseVisualStyleBackColor = true;
+            this.btnDownloadFolder.Click += new System.EventHandler(this.btnDownloadFolder_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.progressBar1);
+            this.panel1.Controls.Add(this.progressBar2);
+            this.panel1.Location = new System.Drawing.Point(67, 207);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(519, 143);
+            this.panel1.TabIndex = 16;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1307, 725);
-            this.Controls.Add(this.progressBar6);
-            this.Controls.Add(this.progressBar5);
-            this.Controls.Add(this.progressBar4);
-            this.Controls.Add(this.progressBar3);
-            this.Controls.Add(this.progressBar2);
-            this.Controls.Add(this.progressBar1);
+            this.ClientSize = new System.Drawing.Size(654, 400);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnDownloadFolder);
+            this.Controls.Add(this.numericConnections);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtDownloadFolder);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.txtUrl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Download Accelerator";
+            ((System.ComponentModel.ISupportInitialize)(this.numericConnections)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,10 +188,13 @@
         private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ProgressBar progressBar2;
-        private System.Windows.Forms.ProgressBar progressBar3;
-        private System.Windows.Forms.ProgressBar progressBar4;
-        private System.Windows.Forms.ProgressBar progressBar5;
-        private System.Windows.Forms.ProgressBar progressBar6;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtDownloadFolder;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numericConnections;
+        private System.Windows.Forms.Button btnDownloadFolder;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
